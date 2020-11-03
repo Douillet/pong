@@ -1,0 +1,18 @@
+body{
+    background-color: black;
+    color: #ffffff
+}
+
+#terrain{
+    border: 1px solid white;
+    width: 800px;
+    height: 400px;
+
+}
+
+#balle{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
