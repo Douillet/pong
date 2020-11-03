@@ -1,0 +1,36 @@
+body{
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+
+    /** Centre les éléments au centre de la page **/
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+#terrain{
+    position: relative;
+    border: 1px solid white; /** Rends la bordure visible et de couleur blanche. **/
+    
+    /** Dimension du terrain **/
+    width: 800px;
+    height: 400px;
+
+}
+
+#balle{
+    position: absolute;
+    top:50%; /** Mets la balle au centre de l'écran en hauteur **/
+    left: 50%; /** Mets la balle au centre de l'écran en largeur **/
+
+    /** Dimension, couleur et arrondi des angles du carré qui devient un cercle (la balle) **/
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 100%;
+}
