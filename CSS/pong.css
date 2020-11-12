@@ -25,7 +25,7 @@ body{
 
 #balle{
     position: absolute;
-    top:50%; /** Mets la balle au centre de l'écran en hauteur **/
+    top: 50%; /** Mets la balle au centre de l'écran en hauteur **/
     left: 50%; /** Mets la balle au centre de l'écran en largeur **/
 
     /** Dimension, couleur et arrondi des angles du carré qui devient un cercle (la balle) **/
@@ -33,4 +33,24 @@ body{
     height: 20px;
     background-color: white;
     border-radius: 100%;
+}
+
+#raquette_droite{
+    position: absolute;
+    top: 50%;
+    left: 7%;
+
+    width: 10px;
+    height: 25%;
+    background-color: white;
+}
+
+#raquette_gauche{
+    position: absolute;
+    top: 50%;
+    left: 93%;
+
+    width: 10px;
+    height: 25%;
+    background-color: white;
 }
