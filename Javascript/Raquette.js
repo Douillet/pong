@@ -26,6 +26,6 @@ class Raquette{
         }
     }
     majHTML(){
-        this.$element.css("top", this.haut);
+        this.$element.css("top", this.haut); //actualisation du CSS
 }
 }

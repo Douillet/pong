@@ -8,9 +8,9 @@ let raquetteGauche=new Raquette($("#gauche")); //Créé les deux raquettes
 let raquetteDroite=new Raquette($("#droite"));
 
 
-setInterval(function()
+setInterval(function() //Créé une fonction qui s'exécute toute les 10 millisecondes (le 10 à la fin)
 {
-    //appel des classes correspondant aux objets et de leur fonction
+    //Appelle des classes correspondant aux objets et de leur fonction
     balle.mouvementetrebond();
 
     raquetteGauche.deplacement();

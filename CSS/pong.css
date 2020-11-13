@@ -48,10 +48,10 @@ body{
 }
 #droite
 {
-    right: 1%;
+    right: 1%; /**placé au bord droit**/
 }
 
 #gauche
 {
-    left: 1%
+    left: 1% /**placé au bord gauche**/
 }

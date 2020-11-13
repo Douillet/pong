@@ -3,15 +3,20 @@ class Balle{
         /*Permet d'appeler les informations saisies dans le code CSS pour faire correspondre
         les données de colisions et avec les données graphiques*/
         this.$element=$element;
+       
+        //coordonnées de la balles
         this.haut=parseInt($("#balle").css("top"));
         this.gauche=parseInt($("#balle").css("left"));
+        
+        //taille de la balle
         this.largeur=parseInt($("#balle").css("width"));
         this.hauteur=parseInt($("#balle").css("height"));
+        
         //Configure la vitesse de la balle
         this.vitesseX= 2.5-Math.random()*10;  //selon la largeur IL FAUT ÉQUILIBRER LA VITESSE
         this.vitesseY= 2-Math.random()*8;  //selon la hauteur
     }
-    //Permet d'utiliser ces termes dans une fonction quanf majHTML(){} est entré
+    //Permet d'actualiser ces termes dans le CSS
     majHTML(){
         this.$element.css("left",balle.gauche);
         this.$element.css("top",balle.haut);
