@@ -36,22 +36,22 @@ body{
     border-radius: 100%;
 }
 
-#raquette_droite{
-    position: absolute;
+.raquette
+{
+    position: absolute; /**Position de la raquette sur l'axe Y, la postion de la raquette sur l'axe X se fera sur #droite et #gauche**/
     top: 50%;
-    left: 7%;
+    
 
-    width: 10px;
+    width: 10px; /**Taille de la Raquette**/
     height: 25%;
     background-color: white;
 }
+#droite
+{
+    right: 1%;
+}
 
-#raquette_gauche{
-    position: absolute;
-    top: 50%;
-    left: 93%;
-
-    width: 10px;
-    height: 25%;
-    background-color: white;
+#gauche
+{
+    left: 1%
 }

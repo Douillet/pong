@@ -1,18 +1,22 @@
 <html>
     <head>
         <link rel="stylesheet" href="CSS/pong.css"/>
-        <title>Pong, le FUN !!</title> <!-- Titre de page -->
+        <title>Pong Pee Doo</title> <!-- Titre de page -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--importe la bibliothèque jQueries-->
-
+        
     </head>
     <body>
         <div id="terrain"> <!-- Fait appel a "terrain" grâce à son identifiant -->
             <div id="balle"> </div> <!-- Fait appel a "balle" au sein de "terrain" grâce à son identifiant -->
-            <div id="raquette_droite"> </div> <!-- Fait appel a "raquette_droite" au sein de "terrain" grâce à son identifiant -->
-            <div id="raquette_gauche"> </div> <!-- Fait appel a "raquette_gauche" au sein de "terrain" grâce à son identifiant -->
+            <div id="gauche" class="raquette"></div> <!-- construit une raquette à gauche au sein de "terrain" grâce à son identifiant -->
+            <div id="droite" class="raquette"></div> <!-- construit une raquette à droite au sein de "terrain" grâce à son identifiant -->
         </div>
-    <script src="Javascript/pong.js"></script> <!-- Fait appel au fichier pong.js -->
+    
     </body>
-
+    <script src="Javascript/Terrain.js"></script>
+    <script src="Javascript/Balle.js"></script>
+    <script src="Javascript/Raquette.js"></script>
+    <script src="Javascript/pong.js"></script> <!-- Fait appel au fichier pong.js et ses suivants -->
+    
 
 </html>
