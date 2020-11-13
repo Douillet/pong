@@ -2,8 +2,8 @@ class Raquette{
     constructor($element){
         this.$element=$element
         //Rappelle des infos graphiques du CSS pour correspondre colision, mouvement et visuel
-        this.haut=parseInt($("#raquette").css("top")); 
-        this.gauche=parseInt($("#raquette").css("left"));
+        this.haut=parseInt($element.css("top"));
+        this.gauche=parseInt($element.css("left"));
         
         this.largeur=$element.width();
         this.hauteur=$element.height();
