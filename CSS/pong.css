@@ -15,7 +15,8 @@ body{
 
 #terrain{
     position: relative;
-    border: 1px solid white; /** Rends la bordure visible et de couleur blanche. **/
+    border-top: 1px solid white; /** Rends la bordure supérieur et inférieure visibles et de couleur blanche. **/
+    border-bottom: 1px solid white;
     
     /** Dimension du terrain **/
     width: 800px;
