@@ -23,16 +23,24 @@ class Balle{
         this.$element.css("width",balle.largeur);
         this.$element.css("height",balle.hauteur);
     }
+
+    get droite(){
+        return balle.largeur+balle.gauche;
+    }
+    get bas(){
+        return balle.hauteur+balle.haut;
+    }
+
     mouvementetrebond()
 {
     balle.gauche=balle.gauche + balle.vitesseX; //Donne un mouvement à la balle vers la droite
     balle.haut=balle.haut + balle.vitesseY; //Donne un mouvement à la balle vers le bas
     
-    //Colisions avec le terrain
+    //Collisions avec le terrain PROBLEMES
 
     //bord droit
-    if(balle.gauche>terrain.largeur-balle.largeur){
-        balle.gauche=terrain.largeur-balle.largeur;
+    if(balle.droite>terrain.largeur){
+        balle.droite=terrain.largeur;
         balle.vitesseX=balle.vitesseX*-1;
     }
     //bord gauche
@@ -41,8 +49,8 @@ class Balle{
         balle.vitesseX=balle.vitesseX*-1;
     }
     //bord bas
-    if(balle.haut>terrain.hauteur-balle.hauteur){
-        balle.haut=terrain.hauteur-balle.hauteur;
+    if(balle.bas>terrain.hauteur){
+        balle.bas=terrain.hauteur;
         balle.vitesseY=balle.vitesseY*-1;
     }
     //bord haut

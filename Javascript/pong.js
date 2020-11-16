@@ -17,3 +17,9 @@ setInterval(function() //Créé une fonction qui s'exécute toute les 10 millise
     
     raquetteDroite.deplacement();
 }, 10);
+
+window.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented) { return}
+    console.log("La touche '"+event.key+ "' a été enfoncée")
+    event.preventDefault();
+}, true);
