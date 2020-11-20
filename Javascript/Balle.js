@@ -3,14 +3,14 @@ class Balle{
         /*Permet d'appeler les informations saisies dans le code CSS pour faire correspondre
         les données de colisions et avec les données graphiques*/
         this.$element=$element;
-       
+        let $balle = $("#balle");
         //coordonnées de la balles
-        this.haut=parseInt($("#balle").css("top"));
-        this.gauche=parseInt($("#balle").css("left"));
+        this.haut=parseInt($balle.css("top"));
+        this.gauche=parseInt($balle.css("left"));
         
         //taille de la balle
-        this.largeur=parseInt($("#balle").css("width"));
-        this.hauteur=parseInt($("#balle").css("height"));
+        this.largeur=parseInt(($balle).css("width"));
+        this.hauteur=parseInt(($balle).css("height"));
         
         //Configure la vitesse de la balle
         this.vitesseX= 2.5-Math.random()*10;  //selon la largeur IL FAUT ÉQUILIBRER LA VITESSE
@@ -24,43 +24,76 @@ class Balle{
         this.$element.css("height",balle.hauteur);
     }
 
-    get droite(){
-        return balle.largeur+balle.gauche;
+    get droite(){ //créé la coordonnée droite
+        return this.largeur+this.gauche;
     }
-    get bas(){
-        return balle.hauteur+balle.haut;
+    set droite(value){ //récupère la coordonnée droite
+        this.gauche = value - this.largeur;
+    }
+    get bas(){ //créé la coordonnée bas
+        return this.hauteur+this.haut;
+    }
+    set bas(value){ //récupère la coordonnée bas
+        this.haut = value - this.hauteur;
     }
 
-    mouvementetrebond()
-{
-    balle.gauche=balle.gauche + balle.vitesseX; //Donne un mouvement à la balle vers la droite
-    balle.haut=balle.haut + balle.vitesseY; //Donne un mouvement à la balle vers le bas
-    
-    //Collisions avec le terrain PROBLEMES
+    mouvementetrebond() {
+        this.gauche = this.gauche + this.vitesseX; //Donne un mouvement à la balle vers la droite
+        this.haut = this.haut + this.vitesseY; //Donne un mouvement à la balle vers le bas
 
-    //bord droit
-    if(balle.droite>terrain.largeur){
-        balle.droite=terrain.largeur;
-        balle.vitesseX=balle.vitesseX*-1;
-    }
-    //bord gauche
-    if(balle.gauche<0){
-        balle.gauche=0;
-        balle.vitesseX=balle.vitesseX*-1;
-    }
-    //bord bas
-    if(balle.bas>terrain.hauteur){
-        balle.bas=terrain.hauteur;
-        balle.vitesseY=balle.vitesseY*-1;
-    }
-    //bord haut
-    if(balle.haut<0){
-        balle.haut=0;
-        balle.vitesseY=balle.vitesseY*-1;
-    }
-    balle.majHTML(); //Actualiser le CSS
+        //Collisions avec le terrain
+
+        //bord droit
+        if (this.droite > terrain.largeur) {
+            this.retouraucentre(); //expliqué en bas de code
+            //this.droite=terrain.largeur;
+            this.vitesseX = this.vitesseX * -1;
+        }
+        //bord gauche
+        if (this.gauche < 0) {
+            this.retouraucentre(); //expliqué en bas de code
+            this.vitesseX = this.vitesseX * -1;
+        }
+        //bord bas
+        if (this.bas > terrain.hauteur) {
+            this.bas = terrain.hauteur;
+            this.vitesseY = this.vitesseY * -1;
+        }
+        //bord haut
+        if (this.haut < 0) {
+            this.haut = 0;
+            this.vitesseY = this.vitesseY * -1;
+        }
+
+        //Collisions avec les raquettes
+        //raquette droite
+        if (this.droite > raquetteDroite.gauche) {
+            if (this.haut < raquetteDroite.bas) {
+                if (this.bas > raquetteDroite.haut) {
+                    //this.droite = raquetteDroite.gauche;
+                    this.vitesseX = this.vitesseX * -1;
+                }
+            }
+        }
+        //raquette gauche
+        if (this.gauche < raquetteGauche.droite) {
+            if (this.bas > raquetteGauche.haut) {
+                if (this.haut < raquetteGauche.bas) {
+                    //this.gauche = raquetteGauche.droite;
+                    this.vitesseX *= -1;
+                }
+            }
+        }
+
+
+    this.majHTML(); //Actualiser le CSS
 
 }
+    retouraucentre() //focntion renvoyant la balle au milieu
+    {
+        this.gauche = terrain.largeur / 2 - this.largeur/2;
+        this.haut = terrain.hauteur / 2 - this.hauteur/2;
+    }
 }
 
 

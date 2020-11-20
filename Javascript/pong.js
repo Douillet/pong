@@ -19,7 +19,33 @@ setInterval(function() //Créé une fonction qui s'exécute toute les 10 millise
 }, 10);
 
 window.addEventListener("keydown", function (event) {
-    if (event.defaultPrevented) { return}
-    console.log("La touche '"+event.key+ "' a été enfoncée")
+    if (event.defaultPrevented) {
+        return
+    }
     event.preventDefault();
+    if (event.key === "z") {
+        raquetteGauche.monter();
+    }
+    if (event.key === "s") {
+        raquetteGauche.descendre();
+    }
+    if (event.key === "-") {
+        raquetteDroite.monter();
+    }
+    if (event.key === "+") {
+        raquetteDroite.descendre();
+    }
+    event.preventDefault();
+}, true);
+window.addEventListener("keyup", function (event) {
+    if (event.defaultPrevented) {
+        return
+    }
+    event.preventDefault();
+    if (event.key === "z" || event.key === "s") {
+        raquetteGauche.arret();
+    }
+    if (event.key === "-" || event.key === "+") {
+        raquetteDroite.arret();
+    }
 }, true);

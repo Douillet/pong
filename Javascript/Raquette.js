@@ -4,17 +4,28 @@ class Raquette{
         //Rappelle des infos graphiques du CSS pour correspondre colision, mouvement et visuel
         this.haut=parseInt($element.css("top"));
         //this.gauche=parseInt($element.css("left"));
-        
-        //this.largeur=$element.width();
+        this.gauche=$element.css("left");
+        this.largeur=$element.width();
         this.hauteur=$element.height();
         
-        this.vitesse=3; //Vitesse de déplacement automatique de la raquette
-        this.direction=1; //+1 fait descendre, -1 fait monter
+        this.vitesse=10; //Vitesse de déplacement automatique de la raquette
+        this.direction=0; //+1 fait descendre, -1 fait monter
+    }
+
+    get droite(){
+        return this.gauche+this.largeur;
+    }
+    set droite(value){
+        this.gauche = value - this.largeur;
     }
 
     get bas(){
         return this.haut+this.hauteur;
     }
+    set bas(value){
+        this.haut = value - this.hauteur
+    }
+
 
     deplacement()
     {
@@ -22,11 +33,26 @@ class Raquette{
         this.limitedemouvements();
         this.majHTML();
     }
+
+    monter()
+    {
+        this.direction=-1;
+    }
+    descendre()
+    {
+        this.direction=1;
+    }
+    arret()
+    {
+        this.direction=0;
+    }
     limitedemouvements(){
         if(this.bas>terrain.hauteur){ //permet à la raquette de remonter quand elle touche le bas du terrain
-            this.direction=-1;}
+            this.bas=terrain.hauteur
+            this.direction=0;}
         if(this.haut<0){//permet à la raquette de redescendre quand elle touche le haut du terrain
-            this.direction=1;
+            this.haut=0
+            this.direction=0;
         }
     }
     majHTML(){
