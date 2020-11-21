@@ -39,7 +39,7 @@ body{
 .raquette
 {
     position: absolute; /**Position de la raquette sur l'axe Y, la postion de la raquette sur l'axe X se fera sur #droite et #gauche**/
-    top: 50%;
+    top: 40%;
     
 
     width: 10px; /**Taille de la Raquette**/

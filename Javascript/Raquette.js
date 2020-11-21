@@ -1,13 +1,15 @@
 class Raquette{
     constructor($element){
         this.$element=$element
+        //let $raquette = $(".raquette","gauche");
         //Rappelle des infos graphiques du CSS pour correspondre colision, mouvement et visuel
         this.haut=parseInt($element.css("top"));
-        //this.gauche=parseInt($element.css("left"));
-        this.gauche=$element.css("left");
-        this.largeur=$element.width();
-        this.hauteur=$element.height();
+        this.gauche=parseInt($element.css("left"));
+        this.largeur=parseInt($element.css("width"));
+        this.hauteur=parseInt($element.css("height"));
         
+        
+
         this.vitesse=10; //Vitesse de déplacement automatique de la raquette
         this.direction=0; //+1 fait descendre, -1 fait monter
     }
@@ -29,9 +31,10 @@ class Raquette{
 
     deplacement()
     {
-        this.haut = this.haut + this.vitesse*this.direction; //vitesse comprenant la direction MAIS ÇA NE MARCHE PAS
+        this.haut = this.haut + this.vitesse*this.direction; //vitesse comprenant la direction 
         this.limitedemouvements();
         this.majHTML();
+        //console.log($element.css("width"));
     }
 
     monter()
