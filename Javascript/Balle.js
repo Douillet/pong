@@ -13,8 +13,11 @@ class Balle{
         this.hauteur=parseInt(($element).css("height"));
         
         //Configure la vitesse de la balle
-        this.vitesseX= 2.5//-Math.random()*10;  //selon la largeur IL FAUT ÉQUILIBRER LA VITESSE
-        this.vitesseY= 2-Math.random()*8;  //selon la hauteur
+        this.vitesseX= 2.5;//-Math.random()*10;  //selon la largeur IL FAUT ÉQUILIBRER LA VITESSE
+        this.vitesseY= 2-Math.random()*4;  //selon la hauteur
+        this.vitesseXmax= 8; //Cap de la vitesse Mac
+        this.directionX= 1;
+        this.directionY= 1;
     }
     //Permet d'actualiser ces termes dans le CSS
     majHTML(){
@@ -38,9 +41,8 @@ class Balle{
     }
 
     mouvementetrebond() {
-        this.gauche = this.gauche + this.vitesseX; //Donne un mouvement à la balle vers la droite
-        this.haut = this.haut + this.vitesseY; //Donne un mouvement à la balle vers le bas
-        console.log("b",this.haut, this.vitesseY);
+        this.gauche = this.gauche + this.vitesseX*this.directionX; //Donne un mouvement à la balle vers la droite
+        this.haut = this.haut + this.vitesseY*this.directionY; //Donne un mouvement à la balle vers le bas
 
         //Collisions avec le terrain
 
@@ -48,45 +50,67 @@ class Balle{
         //bord bas
         if (this.bas > terrain.hauteur) {
             this.bas = terrain.hauteur;
-            this.vitesseY = this.vitesseY * -1;
+            this.directionY = this.directionY* -1;
+            terrain.tiltBas();
         }
         //bord haut
         if (this.haut < 0) {
             this.haut = 0;
-            this.vitesseY = this.vitesseY * -1;
+            this.directionY = this.directionY * -1;
+            terrain.tiltHaut();
         }
 
         //Collisions avec les raquettes
         //raquette droite
-        if (this.droite >= raquetteDroite.gauche) {
+        if (this.droite >= raquetteDroite.gauche) { //conditions de rebond
             if (this.haut < raquetteDroite.bas) {
                 if (this.bas > raquetteDroite.haut) {
                     this.droite = raquetteDroite.gauche;
-                    this.vitesseX = this.vitesseX * -1;
+                    this.directionX = this.directionX * -1;
+                    raquetteDroite.tiltRaquetteDroite();
+                    if (this.vitesseX < this.vitesseXmax) { //accélération
+                        this.vitesseX *= 1.1;
+                    } else {
+                        this.vitesseX= this.vitesseXmax; //cap de la vitessemax
+                        console.log(this.vitesseX)
+                    }
+                        
+                    
                 }
             }
         }
+
         //raquette gauche
-        if (this.gauche <= raquetteGauche.droite) {
+        if (this.gauche <= raquetteGauche.droite) { //conditions de rebond
             if (this.bas > raquetteGauche.haut) {
                 if (this.haut < raquetteGauche.bas) {
                     this.gauche = raquetteGauche.droite;
                     this.vitesseX *= -1;
+                    raquetteGauche.tiltRaquetteGauche();
+                    if (this.vitesseX < this.vitesseXmax) { //accélération
+                        this.vitesseX *= 1.1;
+                    } else {
+                        this.vitesseX= this.vitesseXmax; //cap de la vitessemax
+                        console.log(this.vitesseX);
+                    }
                 }
             }
         }
         
         //bord droit
         if (this.droite > terrain.largeur) {
-            console.log("bord droit",this.droite, terrain.largeur)
             this.retouraucentre(); //expliqué en bas de code
             //this.droite=terrain.largeur;
-            this.vitesseX = this.vitesseX * -1;
+            this.vitesseX = 2.5;
+            this.directionX *= -1;
+            terrain.tiltDroite();
         }
         //bord gauche
         if (this.gauche < 0) {
             this.retouraucentre(); //expliqué en bas de code
-            this.vitesseX = this.vitesseX * -1;
+            this.vitesseX = 2.5;
+            this.directionX *= -1;
+            terrain.tiltGauche();
         }
 
     this.majHTML(); //Actualiser le CSS

@@ -58,7 +58,32 @@ class Raquette{
             this.direction=0;
         }
     }
+    tiltRaquetteDroite() {
+        //ajouter une classe du css
+        this.$element.addClass("tiltRaquetteDroite");
+        let buffer = this;
+
+        setTimeout(
+            function () {
+                //retirer une classe au bout de 200 millisecondes
+                buffer.$element.removeClass("tiltRaquetteDroite");
+            }, 200
+        );
+    }
+    tiltRaquetteGauche() {
+        //ajouter une classe du css
+        this.$element.addClass("tiltRaquetteGauche");
+        let buffer = this;
+
+        setTimeout(
+            function () {
+                //retirer une classe au bout de 200 millisecondes
+                buffer.$element.removeClass("tiltRaquetteGauche");
+            }, 200
+        );
+    }
     majHTML(){
         this.$element.css("top", this.haut); //actualisation du CSS
 }
+
 }
