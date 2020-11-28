@@ -23,16 +23,16 @@ window.addEventListener("keydown", function (event) {
         return
     }
     event.preventDefault();
-    if (event.key === "z") {
+    if (event.key === "a") {
         raquetteGauche.monter();
     }
-    if (event.key === "s") {
+    if (event.key === "q") {
         raquetteGauche.descendre();
     }
-    if (event.key === "-") {
+    if (event.key === "p") {
         raquetteDroite.monter();
     }
-    if (event.key === "+") {
+    if (event.key === "m") {
         raquetteDroite.descendre();
     }
     event.preventDefault();
@@ -42,10 +42,10 @@ window.addEventListener("keyup", function (event) {
         return
     }
     event.preventDefault();
-    if (event.key === "z" || event.key === "s") {
+    if (event.key === "a" || event.key === "q") {
         raquetteGauche.arret();
     }
-    if (event.key === "-" || event.key === "+") {
+    if (event.key === "p" || event.key === "m") {
         raquetteDroite.arret();
     }
 }, true);

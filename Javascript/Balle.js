@@ -66,13 +66,14 @@ class Balle{
             if (this.haut < raquetteDroite.bas) {
                 if (this.bas > raquetteDroite.haut) {
                     this.droite = raquetteDroite.gauche;
-                    this.directionX = this.directionX * -1;
+                    this.directionX *= -1;
                     raquetteDroite.tiltRaquetteDroite();
                     if (this.vitesseX < this.vitesseXmax) { //accélération
-                        this.vitesseX *= 1.1;
+                        this.vitesseX += 0.5;
+                        console.log(this.vitesseX, "a");
                     } else {
                         this.vitesseX= this.vitesseXmax; //cap de la vitessemax
-                        console.log(this.vitesseX)
+                        
                     }
                         
                     
@@ -85,13 +86,14 @@ class Balle{
             if (this.bas > raquetteGauche.haut) {
                 if (this.haut < raquetteGauche.bas) {
                     this.gauche = raquetteGauche.droite;
-                    this.vitesseX *= -1;
                     raquetteGauche.tiltRaquetteGauche();
                     if (this.vitesseX < this.vitesseXmax) { //accélération
-                        this.vitesseX *= 1.1;
+                        this.vitesseX += 0.5;
+                        this.directionX *= -1;
+                        console.log(this.vitesseX, "b");
                     } else {
                         this.vitesseX= this.vitesseXmax; //cap de la vitessemax
-                        console.log(this.vitesseX);
+                        this.directionX *= -1;
                     }
                 }
             }
