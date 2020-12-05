@@ -6,18 +6,38 @@
         
     </head>
     <body>
+        <div class="ecran-debut">
+            <div>
+                Joueur Gauche <br><br>
+                utilisez les touches <br><br>
+                <span class="touche">A</span> 
+                    et 
+                <span class="touche">Q</span> 
+            </div>
+            <div>
+                Joueur Droite <br><br>
+                utilisez les touches <br><br> 
+                <span class="touche">P</span> 
+                    et 
+                <span class="touche">M</span> 
+            </div>
+            <a href="#" class="btn btn-go">JOUER</a>
+        </div>
+
+
         <div id="terrain"> <!-- Fait appel a "terrain" grâce à son identifiant -->
             <div id="balle"> </div> <!-- Fait appel a "balle" au sein de "terrain" grâce à son identifiant -->
             <div id="gauche" class="raquette"></div> <!-- construit une raquette à gauche au sein de "terrain" grâce à son identifiant -->
             <div id="droite" class="raquette"></div> <!-- construit une raquette à droite au sein de "terrain" grâce à son identifiant -->
             <div id="score_barre"> </div> <!-- fait apparaître une barre séparant les scores-->
             <div class="score">
-                <div class="scoreG">0</div>
-                <div class="scoreD">0</div>
+                <div id="Sgauche" class="scoreG">0</div>
+                <div id="Sdroite" class="scoreD">0</div>
             </div>
         </div>
     
     </body>
+    <script src="Javascript/Joueur.js"></script>
     <script src="Javascript/Terrain.js"></script> <!-- Fait appel aux fichiers js-->
     <script src="Javascript/Balle.js"></script>
     <script src="Javascript/Raquette.js"></script>

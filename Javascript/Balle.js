@@ -40,6 +40,21 @@ class Balle{
         this.haut = value - this.hauteur;
     }
 
+    devieDirectionG() { //fonction qui permet de faire varier la direction de la balle selon l'endroit où elle rebondit sur la raquette
+        //valeur entre 0 et 1
+        let facteur = (this.bas + raquetteGauche.haut) / (raquetteGauche.hauteur + this.hauteur);  //produit en croix
+        //valeur entre -0.25 et 0.25
+        facteur = facteur - 0.5;
+        this.vitesseY = (facteur - this.vitesseY) / 2;
+}
+    devieDirectionD() { //fonction qui permet de faire varier la direction de la balle selon l'endroit où elle rebondit sur la raquette
+        //valeur entre 0 et 1
+        let facteur = (this.bas + raquetteDroite.haut) / (raquetteDroite.hauteur + this.hauteur);  //produit en croix
+        //valeur entre -0.25 et 0.25
+        facteur = facteur - 0.5;
+        this.vitesseY = (facteur - this.vitesseY)/2;
+    }
+
     mouvementetrebond() {
         this.gauche = this.gauche + this.vitesseX*this.directionX; //Donne un mouvement à la balle vers la droite
         this.haut = this.haut + this.vitesseY*this.directionY; //Donne un mouvement à la balle vers le bas
@@ -67,10 +82,11 @@ class Balle{
                 if (this.bas > raquetteDroite.haut) {
                     this.droite = raquetteDroite.gauche;
                     this.directionX *= -1;
+                    this.devieDirectionD();
                     raquetteDroite.tiltRaquetteDroite();
                     if (this.vitesseX < this.vitesseXmax) { //accélération
                         this.vitesseX += 0.5;
-                        console.log(this.vitesseX, "a");
+                        console.log(this.directionY, "a");
                     } else {
                         this.vitesseX= this.vitesseXmax; //cap de la vitessemax
                         
@@ -86,11 +102,12 @@ class Balle{
             if (this.bas > raquetteGauche.haut) {
                 if (this.haut < raquetteGauche.bas) {
                     this.gauche = raquetteGauche.droite;
+                    this.devieDirectionG()
                     raquetteGauche.tiltRaquetteGauche();
                     if (this.vitesseX < this.vitesseXmax) { //accélération
                         this.vitesseX += 0.5;
                         this.directionX *= -1;
-                        console.log(this.vitesseX, "b");
+                        console.log(this.directionY, "b");
                     } else {
                         this.vitesseX= this.vitesseXmax; //cap de la vitessemax
                         this.directionX *= -1;
@@ -105,14 +122,16 @@ class Balle{
             //this.droite=terrain.largeur;
             this.vitesseX = 2.5;
             this.directionX *= -1;
-            terrain.tiltDroite();
+            terrain.tiltDroite();  //fait clignoter le terrain
+            joueur0.ajoutScore();  //fait augmenter le score du joueur de gauche
         }
         //bord gauche
         if (this.gauche < 0) {
             this.retouraucentre(); //expliqué en bas de code
             this.vitesseX = 2.5;
             this.directionX *= -1;
-            terrain.tiltGauche();
+            terrain.tiltGauche();  //fait clignoter le terrain 
+            joueur1.ajoutScore();  //fait augmenter le score du joueur de droite
         }
 
     this.majHTML(); //Actualiser le CSS
@@ -122,6 +141,7 @@ class Balle{
     {
         this.gauche = terrain.largeur / 2 - this.largeur/2;
         this.haut = terrain.hauteur / 2 - this.hauteur/2;
+        this.vitesseY= 2-Math.random()*4; //modifie la direction verticale de manière à aléatoir à nouveau
     }
 }
 
