@@ -10,16 +10,29 @@ let joueur1 = new Joueur($("#Sdroite"))
 let raquetteGauche=new Raquette($("#gauche")); //Créé les deux raquettes
 let raquetteDroite=new Raquette($("#droite"));
 
+let demarrer = false
 
 setInterval(function() //Créé une fonction qui s'exécute toute les 10 millisecondes (le 10 à la fin)
 {
-    //Appelle des classes correspondant aux objets et de leur fonction
-    balle.mouvementetrebond();
+    if(demarrer) {
+        balle.mouvementetrebond();
 
-    raquetteGauche.deplacement();
-    
-    raquetteDroite.deplacement();
+        raquetteGauche.deplacement();
+
+        raquetteDroite.deplacement();
+    }
+    //Appelle des classes correspondant aux objets et de leur fonction
+
+
+
 }, 10);
+
+
+$("#btn-jouer").on("click", function (e) {
+    e.preventDefault();
+    demarrer=true;
+    $(".ecran-debut").addClass("invisible");
+});
 
 window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {

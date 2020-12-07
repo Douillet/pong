@@ -69,7 +69,7 @@ body{
 }
 
 .tiltRaquetteDroite {
-    background-color: white !important;
+    background-color: white !important; /*important permet de mettre la couleur donnée par dessus les autres*/
 }
 
 #gauche
@@ -116,10 +116,11 @@ body{
 }
 
 .ecran-debut{
-    transition: all 3s;
+    transition: all 2s;   /**transition en fondu de tous les éléments du menu**/
     box-sizing: border-box;
     position: absolute;
-    top: 0;
+    z-index: 3;   /** Mets le menu au premier plan**/
+    top: -15%;    /** décale le menu légèrement vers le haut**/
     left: 0;
     width: 100%;
     height: 100%;
@@ -131,6 +132,11 @@ body{
     flex-direction: column;
     text-align: center;
     padding: 50px;
+
+    transition-duration: 1s;
+    will-change: opacity, filter;
+    opacity: 1;
+    filter: blur(0px);
 }
 .ecran-debut>*{
     margin: 10px;
@@ -140,15 +146,36 @@ body{
 }
 
 /* disparition de l'écran de début */
-.ecran-debut{
-    transition: all 2s;
-    transition-duration: 1s;
-    will-change: opacity, filter;
-    opacity: 1;
-    filter: blur(0px);
-}
+
 .ecran-debut.invisible{
     pointer-events: none;
     opacity: 0;
     filter: blur(16px);
+}
+
+/*Bouton de l'écran de démarrage*/
+
+.btn-jouer {
+    box-shadow:inset 0px 1px 6px 2px #fce2c1;
+    background:linear-gradient(to bottom, #ffa230 5%, #fa8c05 100%);
+    background-color:#ffa230;
+    border-radius:6px;
+    border:1px solid #ffa200;
+    display:inline-block;
+    cursor:pointer;
+    color:#0f0d0f;
+    font-family:Trebuchet MS;
+    font-size:18px;
+    font-weight:bold;
+    padding:11px 24px;
+    text-decoration:none;
+    text-shadow:0px 3px 0px #ff9d00;
+}
+.btn-jouer:hover {
+    background:linear-gradient(to bottom, #fa8c05 5%, #ffa230 100%);
+    background-color:#fa8c05;
+}
+.btn-jouer:active {
+    position:relative;
+    top:1px;
 }

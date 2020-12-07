@@ -42,17 +42,18 @@ class Balle{
 
     devieDirectionG() { //fonction qui permet de faire varier la direction de la balle selon l'endroit où elle rebondit sur la raquette
         //valeur entre 0 et 1
-        let facteur = (this.bas + raquetteGauche.haut) / (raquetteGauche.hauteur + this.hauteur);  //produit en croix
+        let facteur = (this.bas - raquetteGauche.hauteur) / (raquetteGauche.haut + this.hauteur);  //produit en croix
         //valeur entre -0.25 et 0.25
-        facteur = facteur - 0.5;
-        this.vitesseY = (facteur - this.vitesseY) / 2;
+        //facteur = facteur - 0.5;
+        this.vitesseY = facteur * 3;
 }
     devieDirectionD() { //fonction qui permet de faire varier la direction de la balle selon l'endroit où elle rebondit sur la raquette
         //valeur entre 0 et 1
-        let facteur = (this.bas + raquetteDroite.haut) / (raquetteDroite.hauteur + this.hauteur);  //produit en croix
+
+        let facteur = (this.bas - raquetteDroite.hauteur) / (raquetteDroite.haut + this.hauteur);  //produit en croix
         //valeur entre -0.25 et 0.25
-        facteur = facteur - 0.5;
-        this.vitesseY = (facteur - this.vitesseY)/2;
+        //facteur = facteur - 0.5;
+        this.vitesseY = facteur * 3;
     }
 
     mouvementetrebond() {
@@ -86,7 +87,11 @@ class Balle{
                     raquetteDroite.tiltRaquetteDroite();
                     if (this.vitesseX < this.vitesseXmax) { //accélération
                         this.vitesseX += 0.5;
-                        console.log(this.directionY, "a");
+                        console.log(this.bas, "a");
+                        console.log(raquetteDroite.haut, "b");
+                        console.log(raquetteDroite.hauteur, "c");
+                        console.log(this.hauteur, "a");
+                        console.log((this.bas + raquetteDroite.haut) / (raquetteDroite.hauteur + this.hauteur));
                     } else {
                         this.vitesseX= this.vitesseXmax; //cap de la vitessemax
                         
